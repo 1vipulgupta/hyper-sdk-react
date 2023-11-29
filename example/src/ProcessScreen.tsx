@@ -794,6 +794,7 @@ class ProcessScreen extends React.Component {
                       mobile_number: this.mobile,
                       customer_email: this.email,
                       timestamp: HyperUtils.getTimestamp(),
+                      features: { paymentWidget: { enable: true } },
                     };
                     HyperAPIUtils.generateSign(
                       this.privateKey,
@@ -948,13 +949,13 @@ class ProcessScreen extends React.Component {
           >
             {this.state.isPayloadGenerated ? (
               <HyperView
-                height={83}
+                height={103}
                 payload={
                   this.service === 'pp'
                     ? this.state.ppPayload
                     : this.flyerPayload
                 }
-                namespace={'quickPay'}
+                namespace={'paymentWidget'}
               />
             ) : null}
           </View>
@@ -1019,7 +1020,7 @@ const styles = StyleSheet.create({
   },
   horizontal2: {
     flexDirection: 'row',
-    height: 83,
+    height: 103,
     width: '100%',
     position: 'absolute',
     bottom: 0,
